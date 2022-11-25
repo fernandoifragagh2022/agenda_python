@@ -1,5 +1,8 @@
 import os
 
+CARPETA = 'contactos/'
+EXTENCION = '.txt'
+
 def app():
 
     crear_directorio()
@@ -11,7 +14,7 @@ def app():
         opcion=int(opcion)
         
         if opcion == 1:
-            print('Agregar contacto \r\n')
+            agregar_contacto()
             pregunta = False
         elif opcion == 2:
             print('Editar contacto \r\n')
@@ -29,8 +32,8 @@ def app():
             print('Opcion no valida')
 
 def crear_directorio():
-    if not os.path.exists('contactos/'):
-        os.makedirs('contactos/')           #Crea carpeta
+    if not os.path.exists(CARPETA):
+        os.makedirs(CARPETA)           #Crea carpeta
     else:
         print('La carpeta ya existe')
         
@@ -42,5 +45,12 @@ def mostrar_menu():
     print('3) Ver contacto \r\n')
     print('4) Buscar contacto \r\n')
     print('5) Eliminar contacto \r\n')
+    
+def agregar_contacto():
+    print('Escribe los datos del nuevo contacto')
+    nombre_contacto = input('Nombre del contacto: \r\n')
+    
+    with open(CARPETA + nombre_contacto + EXTENCION, 'w') as archivo:
+        archivo.write('Nombre: ' + nombre_contacto + '\r\n')
 
 app()
